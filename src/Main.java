@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ public class Main {
         Person per2 = new Person("Лев", "Толстой");
         Person per3 = new Person("Александр", "Пушкин");
 
-        List<Person> personList = List.of(per1, per2, per3);
+        List<Person> personList = new ArrayList<>();
 
 
         Book book1 = new Book("Ревизор", per1);
@@ -19,6 +20,13 @@ public class Main {
         Book book6 = new Book("Полтава", per3);
 
         List<Book> bookList = List.of(book1, book2, book3, book4, book5, book6);
+
+
+        for (int i = 0; i < bookList.size(); i++){
+            Book k = bookList.get(i);
+            Person u = k.getPerson();
+            personList.add(u);
+        }
 
         findBook(personList, bookList);
 
@@ -34,7 +42,7 @@ public class Main {
                 Book b = (Book) list.get(i);
                 Person p = b.getPerson();
                 if (p.hashCode() == o.hashCode()) {
-                    n = n + " " + b.getName() + ";";
+                    n = n + ", " + b.getName();
 
                 }
 
