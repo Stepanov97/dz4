@@ -5,7 +5,6 @@ public class Main {
         Person per1 = new Person("Николай", "Гоголь");
         Person per2 = new Person("Лев", "Толстой");
         Person per3 = new Person("Александр", "Пушкин");
-        List<Person> personList = new ArrayList<>();
         Book book1 = new Book("Ревизор", per1);
         Book book2 = new Book("Мертвые души", per1);
         Book book3 = new Book("Война и мир", per2);
@@ -13,27 +12,22 @@ public class Main {
         Book book5 = new Book("Капитанская дочка", per3);
         Book book6 = new Book("Полтава", per3);
         List<Book> bookList = List.of(book1, book2, book3, book4, book5, book6);
-        for (int i = 0; i < bookList.size(); i++) {
-            Book k = bookList.get(i);
-            Person u = k.getPerson();
-            personList.add(u);
-        }
-        findBook(bookList);
+        System.out.println(findBook(bookList));
     }
-    public static void findBook(List list) {
-        Map<Person, List <String>> oneAuthor = new HashMap<>();
-        for (int k = 0; k < list.size(); k++) {
-            Book b = (Book) list.get(k);
+
+    public static Map<Person, List<String>> findBook(List<Book> list) {
+        Map<Person, List<String>> oneAuthor = new HashMap<>();
+        for (Book b : list) {
             Person p = b.getPerson();
-            List<String> s = new ArrayList<>();
-            s.add(b.getName());
+            String n = b.getName();
             if (oneAuthor.containsKey(p)) {
                 oneAuthor.get(p).add(b.getName());
             } else {
+                List<String> s = new ArrayList<>();
+                s.add(n);
                 oneAuthor.put(p,s);
             }
-
         }
-        System.out.println(oneAuthor);
+        return oneAuthor;
     }
 }
