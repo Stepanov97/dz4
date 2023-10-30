@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,14 +21,16 @@ public class Main {
         findBook(bookList);
     }
     public static void findBook(List list) {
-        Map<Person, String> oneAuthor = new HashMap<>();
+        Map<Person, List <String>> oneAuthor = new HashMap<>();
         for (int k = 0; k < list.size(); k++) {
             Book b = (Book) list.get(k);
             Person p = b.getPerson();
+            List<String> s = new ArrayList<>();
+            s.add(b.getName());
             if (oneAuthor.containsKey(p)) {
-                oneAuthor.put(p, oneAuthor.get(p) + "," + b.getName());
+                oneAuthor.get(p).add(b.getName());
             } else {
-                oneAuthor.put(p, b.getName());
+                oneAuthor.put(p,s);
             }
 
         }
